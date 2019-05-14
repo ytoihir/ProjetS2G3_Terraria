@@ -24,7 +24,7 @@ public class Terrain {
 			
 			String ligne ;
 			
-			BufferedReader fichier = new BufferedReader(new FileReader("map2_ground.csv"));
+			BufferedReader fichier = new BufferedReader(new FileReader("csv/map2_ground.csv"));
 			
 			int hauteur=0;
 			
@@ -54,13 +54,32 @@ public class Terrain {
 				cpt++;
 				i++;
 			}
+			
+			//affecter une image pour les tiles sol
+			
+			tabValeur[10][1]="images/ground.png";
+			terrain.add(new Tuile(hauteur,colonne,tabValeur[i][1],false));
+			
+			//affiche le tableau tabValeur
+			
+			for (int a=0; a<tabValeur.length; a++) {
+				
+				for (int b=0; b<tabValeur[a].length; b++) {
+					
+					System.out.print(tabValeur[a][b]+"|");
+					
+				}
+				
+				System.out.println("");
+				
+			}
 		
 			fichier.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 	
 	public double getTaille() {
