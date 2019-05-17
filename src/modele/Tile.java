@@ -1,6 +1,6 @@
 package modele;
 
-public class Tuile {
+public class Tile {
 	
 	private int posx;
 	private int posy;
@@ -10,7 +10,7 @@ public class Tuile {
 	
 	private static int no=0;
 	
-	public Tuile (int posx, int posy, String valeur, boolean collision) {
+	public Tile (int posx, int posy, String valeur, boolean collision) {
 		
 		this.id=no++;
 		this.posx=posx;
