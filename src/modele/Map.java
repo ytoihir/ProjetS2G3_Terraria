@@ -21,11 +21,11 @@ public class Map {
 		
 		map = FXCollections.observableArrayList();
 		
-		tabSkyValue = new String[32][2];
+		tabSkyValue = new String[14][2];
 		
 		tabGroundValue = new String[2][2];
 		
-		tabObjectsValue = new String[8][2];
+		tabObjectsValue = new String[13][2];
 		
 		try {
 			
@@ -104,7 +104,6 @@ public class Map {
 			
 			tabSkyValue[i][0]="27";
 			tabSkyValue[i][1]="imagesMap/sky/sky_27.png";
-			i++;
 			
 			// affecter les imagesMap au tiles sol
 
@@ -122,64 +121,55 @@ public class Map {
 			i=0;
 					
 			tabObjectsValue[i][0]="38";
-			tabObjectsValue[i][1]="imagesMap/objetcs/objects_38.png";
+			tabObjectsValue[i][1]="imagesMap/objects/objects_38.png";
 			i++;
 			
 			tabObjectsValue[i][0]="40";
-			tabObjectsValue[i][1]="imagesMap/objetcs/objects_40.png";
+			tabObjectsValue[i][1]="imagesMap/objects/objects_40.png";
 			i++;
 			
 			tabObjectsValue[i][0]="46";
-			tabObjectsValue[i][1]="imagesMap/objetcs/objects_46.png";
+			tabObjectsValue[i][1]="imagesMap/objects/objects_46.png";
 			i++;
 			
 			tabObjectsValue[i][0]="47";
-			tabObjectsValue[i][1]="imagesMap/objetcs/objects_47.png";
+			tabObjectsValue[i][1]="imagesMap/objects/objects_47.png";
 			i++;
 			
 			tabObjectsValue[i][0]="51";
-			tabObjectsValue[i][1]="imagesMap/objetcs/objects_51.png";
+			tabObjectsValue[i][1]="imagesMap/objects/objects_51.png";
 			i++;
 			
 			tabObjectsValue[i][0]="52";
-			tabObjectsValue[i][1]="imagesMap/objetcs/objects_52.png";
+			tabObjectsValue[i][1]="imagesMap/objects/objects_52.png";
 			i++;
 			
 			tabObjectsValue[i][0]="62";
-			tabObjectsValue[i][1]="imagesMap/objetcs/objects_62.png";
+			tabObjectsValue[i][1]="imagesMap/objects/objects_62.png";
 			i++;
 			
 			tabObjectsValue[i][0]="63";
-			tabObjectsValue[i][1]="imagesMap/objetcs/objects_63.png";
+			tabObjectsValue[i][1]="imagesMap/objects/objects_63.png";
+			i++;
 			
 			tabObjectsValue[i][0]="64";
-			tabObjectsValue[i][1]="imagesMap/objetcs/objects_64.png";
+			tabObjectsValue[i][1]="imagesMap/objects/objects_64.png";
+			i++;
 			
 			tabObjectsValue[i][0]="67";
-			tabObjectsValue[i][1]="imagesMap/objetcs/objects_67.png";
+			tabObjectsValue[i][1]="imagesMap/objects/objects_67.png";
+			i++;
 			
 			tabObjectsValue[i][0]="68";
-			tabObjectsValue[i][1]="imagesMap/objetcs/objects_68.png";
+			tabObjectsValue[i][1]="imagesMap/objects/objects_68.png";
+			i++;
 			
 			tabObjectsValue[i][0]="79";
-			tabObjectsValue[i][1]="imagesMap/objetcs/objects_79.png";
+			tabObjectsValue[i][1]="imagesMap/objects/objects_79.png";
+			i++;
 			
 			tabObjectsValue[i][0]="80";
-			tabObjectsValue[i][1]="imagesMap/objetcs/objects_80.png";
-			
-			//affiche le tableau tabValeur
-			
-			for (int a=0; a<tabSkyValue.length; a++) {
-				
-				for (int b=0; b<tabSkyValue[a].length; b++) {
-					
-					System.out.print(tabSkyValue[a][b]+" ");
-					
-				}
-				
-				System.out.println("");
-				
-			}
+			tabObjectsValue[i][1]="imagesMap/objects/objects_80.png";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
