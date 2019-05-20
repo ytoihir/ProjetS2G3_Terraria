@@ -17,7 +17,7 @@ public class Tile {
 		this.posy=posy;
 		this.valeur=valeur;
 		this.collision=collision;
-		
+
 	}
 
 }

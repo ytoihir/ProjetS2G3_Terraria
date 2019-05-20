@@ -17,6 +17,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 		
+		new Map("m");
 		FXMLLoader loader = new FXMLLoader();
 		URL url = new File("src/vue/vue.fxml").
 		toURI().toURL();
