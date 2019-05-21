@@ -35,7 +35,7 @@ public class Map {
 			
 			//affecter l'image ciel aux tiles ciel
 			
-			BufferedReader fichier = new BufferedReader(new FileReader("csv/Map_sky.csv"));
+			BufferedReader fichier = new BufferedReader(new FileReader("csv_json/map/Map_sky.csv"));
 			
 			while ((ligne = fichier.readLine()) != null) {
 				hauteur++;
