@@ -7,10 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Map {
-
-	private int hauteur, colonne;
-	
-	private String nom;
 	
 	private ObservableList<Tile> map;
 	
@@ -19,6 +15,10 @@ public class Map {
 	private String [][] tabGroundValue;
 	
 	private String [][] tabObjectsValue;
+	
+	private int hauteur, colonne;
+	
+	private String nom;
 	
 	public Map(String nom) {
 		
@@ -34,6 +34,8 @@ public class Map {
 		
 		try {
 	
+			// affecter les imagesMap au tiles ciel
+			
 			int i=0;
 			
 			tabSkyValue[i][0]="2";
@@ -102,7 +104,7 @@ public class Map {
 			tabGroundValue[i][0]="1";
 			tabGroundValue[i][1]="imagesMap/ground/ground_1.png";
 			
-			// affecter les imagesMap objects aux tiles
+			// affecter les imagesMap aux tiles objets
 			
 			i=0;
 					
@@ -168,6 +170,8 @@ public class Map {
 				System.out.println("");
 			}
 			
+			// créer tiles pour le ciel
+			
 			int ind=0;
 			
 			String ligne ;
@@ -187,7 +191,46 @@ public class Map {
 				}
 			
 			}
+			
+			fichier.close();
+			
+			// créer tiles pour le sol
+			
+			ind=0;
+			
+			fichier = new BufferedReader(new FileReader("MAPS CSV + JSON/map/Map_ground.csv"));
+						
+			while ((ligne = fichier.readLine()) != null) {
+				String[] tab = ligne.split(",");
+								
+				for (String e : tab) {
+						if(e==tabGroundValue[ind][0]) {
+								map.add(new Tile(0,0,tabGroundValue[ind][1],false));
+						}
+				}
+						
+			}
+			
+			fichier.close();
+			
+			// créer tiles pour les objets
+			
+			ind=0;
+						
+			fichier = new BufferedReader(new FileReader("MAPS CSV + JSON/map/Map_objects.csv"));
+									
+			while ((ligne = fichier.readLine()) != null) {
+				String[] tab = ligne.split(",");
+											
+				for (String e : tab) {
+						if(e==tabObjectsValue[ind][0]) {
+							map.add(new Tile(0,0,tabObjectsValue[ind][1],false));
+						}
+				}
 
+			}
+			
+			fichier.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -197,10 +240,6 @@ public class Map {
 	
 	public double getTaille() {
 		return colonne*hauteur;
-	}
-	
-	public void addTile(Tile t) {
-		map.add(t);
 	}
 
 }
