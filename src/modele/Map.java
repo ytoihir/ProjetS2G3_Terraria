@@ -9,10 +9,15 @@ import javafx.collections.ObservableList;
 public class Map {
 
 	private int hauteur, colonne;
+	
 	private String nom;
+	
 	private ObservableList<Tile> map;
+	
 	private String [][] tabSkyValue;
+	
 	private String [][] tabGroundValue;
+	
 	private String [][] tabObjectsValue;
 	
 	public Map(String nom) {
@@ -28,27 +33,8 @@ public class Map {
 		tabObjectsValue = new String[13][2];
 		
 		try {
-			
+	
 			int i=0;
-			
-			String ligne ;
-			
-			//affecter l'image ciel aux tiles ciel
-			
-			BufferedReader fichier = new BufferedReader(new FileReader("MAPS CSV + JSON/map/Map_sky.csv"));
-			
-			while ((ligne = fichier.readLine()) != null) {
-				hauteur++;
-				colonne=0;
-				String[] tab = ligne.split(",");
-				
-				for (String e : tab) {
-					colonne++;
-				}
-			
-			}
-
-			i=0;
 			
 			tabSkyValue[i][0]="2";
 			tabSkyValue[i][1]="imagesMap/sky/sky_2.png";
@@ -170,38 +156,43 @@ public class Map {
 			
 			tabObjectsValue[i][0]="80";
 			tabObjectsValue[i][1]="imagesMap/objects/objects_80.png";
+
+			for (int a=0; a<tabSkyValue.length; a++) {
+			
+				for (int b=0; b<tabSkyValue[a].length; b++) {
+					
+					System.out.print(tabSkyValue[a][b]+" ");
+					
+				}
+				
+				System.out.println("");
+			}
+			
+			int ind=0;
+			
+			String ligne ;
+			
+			BufferedReader fichier = new BufferedReader(new FileReader("MAPS CSV + JSON/map/Map_sky.csv"));
+			
+			while ((ligne = fichier.readLine()) != null) {
+				hauteur++;
+				colonne=0;
+				String[] tab = ligne.split(",");
+				
+				for (String e : tab) {
+					colonne++;
+					if(e==tabSkyValue[ind][0]) {
+						map.add(new Tile(0,0,tabSkyValue[ind][1],false));
+					}
+				}
+			
+			}
+
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-	}
-	
-	public String browseSkyTab(String e) {
-		for (int ind=0; ind<tabSkyValue.length; ind++) {
-			if (e==tabSkyValue[ind][0]) {
-				return tabSkyValue[ind][1];
-			}
-		}
-		return null;
-	}
-	
-	public String browseGroundTab(String e) {
-		for (int ind=0; ind<tabGroundValue.length; ind++) {
-			if (e==tabGroundValue[ind][0]) {
-				return tabGroundValue[ind][1];
-			}
-		}
-		return null;
-	}
-	
-	public String browseObjectsTab(String e) {
-		for (int ind=0; ind<tabObjectsValue.length; ind++) {
-			if (e==tabObjectsValue[ind][0]) {
-				return tabObjectsValue[ind][1];
-			}
-		}
-		return null;
 	}
 	
 	public double getTaille() {
