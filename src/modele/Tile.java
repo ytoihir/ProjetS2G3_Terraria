@@ -4,7 +4,7 @@ public class Tile {
 	
 	private int posx;
 	private int posy;
-	private String valeur;
+	private String valeurImage;
 	private boolean collision;
 	private int id;
 	
@@ -15,9 +15,13 @@ public class Tile {
 		this.id=no++;
 		this.posx=posx;
 		this.posy=posy;
-		this.valeur=valeur;
+		this.valeurImage=valeur;
 		this.collision=collision;
-
+		
+	}
+	
+	public String toString() {
+		return this.id + " " + this.posx + " " + this.posy + " " + this.valeurImage + " " + this.collision;
 	}
 
 }
