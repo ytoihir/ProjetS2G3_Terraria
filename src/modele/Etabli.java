@@ -4,6 +4,7 @@ public class Etabli {
 	
 	/*
 	private ArrayList<Objet> listeObjets;
+	
 	private Objet objetSelec;
 	
 	public Etabli() {
@@ -42,6 +43,20 @@ public class Etabli {
 		
 	}
 	
+	public Objet choisirUnObjet(Objet o) {
+	
+		for (int i=0; i<listeObjets.size(); i++) {
+			
+			if (listeObjets.get(i)==o) {
+			
+				objetSelec=listeObjets.get(i);
+			
+			}
+		
+		}
+		
+	}
+		
 	*/
 
 }
