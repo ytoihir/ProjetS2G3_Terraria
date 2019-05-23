@@ -1,8 +1,9 @@
 package modele;
 
+import java.util.ArrayList;
+
 public class Etabli {
 	
-	/*
 	private ArrayList<Objet> listeObjets;
 	
 	private Objet objetSelec;
@@ -13,24 +14,10 @@ public class Etabli {
 		
 	}
 	
-	public Objet fabriquerObjet(Ressource r1, Ressource r2) {
-	
-		if ((r1==objetSelec.getRessource() || r2==objetSelec.getRessource2()) {
-			
-			return objetSelec=new Objet();
-		
-		}
-		
-		return null;
-		
-	}
-	
-	public Objet fabriquerObjet(Ressource r1) {
-	
-		if ((r1==objetSelec.getRessource()) {
-			
-			return objetSelec=new Objet();
-		
+	public Objet fabriquerObjet(ArrayList<Ressource >r) {
+
+		if (r==objetSelec.getRessource()) {
+			return objetSelec;
 		}
 		
 		return null;
@@ -43,7 +30,7 @@ public class Etabli {
 		
 	}
 	
-	public Objet choisirUnObjet(Objet o) {
+	public void choisirUnObjet(Objet o) {
 	
 		for (int i=0; i<listeObjets.size(); i++) {
 			
@@ -56,7 +43,5 @@ public class Etabli {
 		}
 		
 	}
-		
-	*/
 
 }
