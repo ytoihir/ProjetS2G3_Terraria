@@ -9,13 +9,23 @@ public class Objet {
 	private String desc;
 	private static int no=0;
 	private ArrayList<Ressource> ressources;
+	private String valeurPNG;
 	
 
-	public Objet(String nom, String description) {
+	public Objet(String nom, String description, String valeurPNG, ArrayList<Ressource> r) {
 		this.id = "O"+no++;
 		this.nom = nom;
 		this.desc = description;
-		ressources=new ArrayList<>();
+		this.valeurPNG=valeurPNG;
+		this.ressources=new ArrayList<>();
+		this.ressources=r;
+	}
+	
+	public Objet(String nom, String description, String valeurPNG) {
+		this.id = "O"+no++;
+		this.nom = nom;
+		this.desc = description;
+		this.valeurPNG=valeurPNG;
 	}
 	
 	public String getNom() {
@@ -27,6 +37,7 @@ public class Objet {
 	public String getDesc() {
 		
 		return this.desc;
+		
 		
 	}
 	
@@ -42,19 +53,9 @@ public class Objet {
 		
 	}
 	
+	public String getValPNG() {
+		return this.valeurPNG;
+	}
+	
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

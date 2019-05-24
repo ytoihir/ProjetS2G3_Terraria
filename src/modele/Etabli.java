@@ -1,32 +1,44 @@
 package modele;
 
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Etabli {
 	
-	private ArrayList<Objet> listeObjets;
+	private ObservableList<Objet> listeObjets;
 	
 	private Objet objetSelec;
 	
 	public Etabli() {
 		
-		listeObjets=new ArrayList<>();
+		listeObjets=FXCollections.observableArrayList();
 		
 	}
 	
-	public Objet fabriquerObjet(ArrayList<Ressource >r) {
+	public Objet fabriquerObjet(ObservableList<Ressource >r) {
 
-		if (r==objetSelec.getRessource()) {
-			return objetSelec;
+		for (int i=0; i<r.size(); i++) {
+			
+			for (int j=0; j<objetSelec.getRessource().size(); j++) {
+				
+				if (r.get(i)==objetSelec.getRessource().get(j)) {
+					
+					objetSelec.getRessource().remove(j);
+					
+				}
+				
+				
+			}
+			
 		}
 		
+		if (objetSelec.getRessource().size()==0) {
+			
+			return objetSelec;
+			
+		}
+	
 		return null;
-		
-	}
-	
-	public void setObjetSelec(Objet o) {
-	
-		this.objetSelec=o;
 		
 	}
 	
@@ -41,6 +53,18 @@ public class Etabli {
 			}
 		
 		}
+		
+	}
+	
+	public void ajouterObjet(Objet o) {
+		
+		listeObjets.add(o);
+		
+	}
+	
+	public ObservableList<Objet> getListe() {
+		
+		return this.listeObjets;
 		
 	}
 

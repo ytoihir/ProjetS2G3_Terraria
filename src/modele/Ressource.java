@@ -1,14 +1,15 @@
 package modele;
 
-public class Ressource {
+public class Ressource extends Objet {
 
-	public Ressource () {
-		
-	}
+	private String nom;
+	private String desc;
+	private String valeurPNG;
 	
-	public String toString() {
+	public Ressource (String nom, String desc, String valPNG) {
 		
-		return "";
+		super(nom,desc,valPNG);
 		
 	}
+
 }
