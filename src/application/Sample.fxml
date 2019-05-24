@@ -10,10 +10,5 @@
    <children>
       <Pane fx:id="affichageMapCiel" prefHeight="640.0" prefWidth="640.0" />
       <Pane fx:id="affichageMapSol" prefHeight="640.0" prefWidth="640.0" />
-      <ImageView fx:id="perso" onKeyPressed="#enMouvement" onKeyReleased="#enArret">
-         <image>
-            <Image url="file:/home/etudiants/info/mbenmoussa/eclipse-workspace/ProjetS2G3_Terraria/src/ImgPersonnage/filleidle.png" />
-         </image>
-      </ImageView>
    </children>
 </Pane>
