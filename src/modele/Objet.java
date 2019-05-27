@@ -53,6 +53,9 @@ public class Objet {
 		
 	}
 	
+	public String getId() {
+		return this.id;
+	}
 	public String getValPNG() {
 		return this.valeurPNG;
 	}

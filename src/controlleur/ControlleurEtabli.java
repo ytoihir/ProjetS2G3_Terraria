@@ -47,30 +47,27 @@ public class ControlleurEtabli {
 	
 	private Etabli e;
 	
-	private Objet objetSelec;
+	private DialogPane alerte;
 
-	public void fabriquerObjet(Objet o,ObservableList<Ressource> listeRessources) {
-		e.choisirUnObjet(o);
+	public void fabriquerObjet(String id,ObservableList<Ressource> listeRessources) {
+		e.choisirUnObjet(id);
 		if (e.fabriquerObjet(listeRessources)!=null) {
-			VBoxObjets.getChildren().add(new Text(e.fabriquerObjet(listeRessources).toString()));
+			VBoxObjets.getChildren().add(new Text("Vous avez fabriquer l'objet " + e.fabriquerObjet(listeRessources).getNom()));
 		}
 		else {
-			DialogPane alerte = new DialogPane();
+			alerte = new DialogPane();
 			ap.getChildren().add(alerte);
 			alerte.setLayoutY(220);
 			alerte.setHeaderText("Vous n'avez pas les ressources nécessaires pour fabriquer cet objet!");
 		}
 	}
 	
-	public void initialize() {
+	public void configurerEtabli() {
 		
-		e = new Etabli();
-
 		ArrayList<Ressource> ressources = new ArrayList<>();
+		ArrayList<Ressource> ressources2 = new ArrayList<>();
 		
 		ressources.add(new Ressource("fer","peut être posé, ou réutiliser pour fabriquer des objets","ressourcesImages/Iron_Bar.png",3));
-		
-		ArrayList<Ressource> ressources2 = new ArrayList<>();
 		
 		ressources2.add(new Ressource("bronze","peut être posé, ou réutiliser pour fabriquer des objets","ressourcesImages/Iron_Crate.png",4));
 		
@@ -79,8 +76,6 @@ public class ControlleurEtabli {
 		e.ajouterObjet(new Objet("arc","tirer","ressourcesImages/arc.png", ressources2));	
 	    
 		for (int i=0; i<e.getListe().size(); i++) {
-		
-			objetSelec = e.getListe().get(i);
 			
 			File fichierObjet = new File(e.getListe().get(i).getValPNG());
 			 
@@ -117,13 +112,13 @@ public class ControlleurEtabli {
 			// FABRIQUER L'OBJET, ON DOIT DONC PARCOURIR SON INVENTAIRE 
 			// PAS ENCORE FAIT
 			
-			//b.setOnAction(evt -> fabriquerObjet(i.getListe());
+			ObservableList<Ressource> listeInventaire = FXCollections.observableArrayList();
 			
-			/*ObservableList<Ressource> l = FXCollections.observableArrayList();
+			listeInventaire.add(new Ressource("bronze","peut être posé, ou réutiliser pour fabriquer des objets","ressourcesImages/Iron_Crate.png",4));
 			
-			l.add(new Ressource("bronze","peut être posé, ou réutiliser pour fabriquer des objets","ressourcesImages/Iron_Crate.png",4));
+			b.setId(e.getListe().get(i).getId());
 			
-			b.setOnAction(evt -> fabriquerObjet(objetSelec, l));*/
+			b.setOnAction(evt -> fabriquerObjet(b.getId(), listeInventaire));
 			
 			VBoxBoutons.setMargin(b,new Insets(0,0,25,0));
 			
@@ -152,6 +147,11 @@ public class ControlleurEtabli {
 			}
 		    
 		}
+	}
+	public void initialize() {
+		
+		e = new Etabli();
+		configurerEtabli();
 	    
 	}
 

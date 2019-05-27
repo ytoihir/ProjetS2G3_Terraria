@@ -42,11 +42,11 @@ public class Etabli {
 		
 	}
 	
-	public void choisirUnObjet(Objet o) {
+	public void choisirUnObjet(String o) {
 	
 		for (int i=0; i<listeObjets.size(); i++) {
 			
-			if (listeObjets.get(i)==o) {
+			if (listeObjets.get(i).getId()==o) {
 			
 				objetSelec=listeObjets.get(i);
 			
