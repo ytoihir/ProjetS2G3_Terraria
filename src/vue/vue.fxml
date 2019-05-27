@@ -6,13 +6,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlleur.ControlleurEtabli">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlleur.Controlleur">
    <children>
       <ImageView fx:id="imageEtabli" fitHeight="21.0" fitWidth="46.0" layoutX="110.0" layoutY="282.0" onMouseClicked="#afficheListeObjets" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../ressourcesImages/établi.png" />
          </image>
       </ImageView>
-      <VBox fx:id="eP" layoutX="154.0" layoutY="182.0" prefHeight="200.0" prefWidth="100.0" />
+      <VBox fx:id="affichage" layoutX="167.0" layoutY="182.0" prefHeight="200.0" prefWidth="125.0" />
+      <Pane fx:id="pane" layoutX="167.0" layoutY="203.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

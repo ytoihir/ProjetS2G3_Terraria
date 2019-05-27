@@ -57,5 +57,4 @@ public class Objet {
 		return this.valeurPNG;
 	}
 	
-	
 }

@@ -21,7 +21,7 @@ public class Etabli {
 			
 			for (int j=0; j<objetSelec.getRessource().size(); j++) {
 				
-				if (r.get(i)==objetSelec.getRessource().get(j)) {
+				if (r.get(i).getNom()==objetSelec.getRessource().get(j).getNom()) {
 					
 					objetSelec.getRessource().remove(j);
 					
