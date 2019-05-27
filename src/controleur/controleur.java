@@ -6,102 +6,105 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.effect.DropShadow;
 
+import modele.inventaire.Arme;
+import modele.inventaire.Epée;
+import modele.inventaire.Arc;
+import modele.inventaire.Pioche;
+import modele.inventaire.Inventaire;
 
 public class controleur implements Initializable{
 	
+    private boolean tenirOuReposer = false;
+    private ImageView imgView;
     
     @FXML
-    private Rectangle inventor1;
-
-    @FXML
-    private Rectangle inventor2;
-
-    @FXML
-    private Rectangle inventor3;
-
-    @FXML
-    private Rectangle inventor4;
-
-    @FXML
-    private Rectangle inventor5;
-
-    @FXML
-    private ImageView pioche;
+    private HBox hbox1;
     
+	@FXML
+    private ImageView Pioche;
+
     @FXML
     private ImageView perso;
 
-    
-/*    private boolean goRight, goLeft, goUp;
-    
-    @FXML
-    void move(KeyEvent ke) {
-
-    	if (ke.getCode() == KeyCode.LEFT) {
-    		goLeft = true;	
-    	}
-    	
-    	if (ke.getCode() == KeyCode.RIGHT) {
-    		goRight = true;	
-    	}
-    	
-    	if (ke.getCode() == KeyCode.UP) {
-    		goUp = true;	
-    	}
-    	
-    	
-  
-    }
-
-    @FXML
-    void stopMoving(KeyEvent ke) {
-    	if (ke.getCode() == KeyCode.LEFT) {
-    		handle();
-    		goLeft = false;
-
-    	}
-    	
-    	if (ke.getCode() == KeyCode.RIGHT) {
-    		handle();
-    		goRight = false;
-
-    	}
-    	
-    	if (ke.getCode() == KeyCode.UP) {
-    		handle();
-    		goUp = false;
-    	}
-    }
-    
-    
-    
-    public void handle() {
-    	
-    	if(goRight) perso.setLayoutX(perso.getLayoutX()+10);
-    	
-    	if(goLeft) perso.setLayoutX(perso.getLayoutX()-10);
-    	
-    	if(goUp) perso.setLayoutX(perso.getLayoutY()+10);
-    }
-    */
-    
     @FXML
     void prendrePioche(MouseEvent event) {
-    	Image i1 = new Image("/img/climb-1.png");
-    	perso.setImage(i1);
+    	prendreObjet(event);
     }
 
+    @FXML
+    void enleverPioche(MouseEvent event) {
+    	enleverObjet(event, Pioche);
+    }
+    
+    // retourne le nom de l'outil cliqué 
+    public String retournerNomOutilCliqué(MouseEvent evt){
+
+    	ImageView i = (ImageView)evt.getSource();
+    	String idImageSelectionée = i.getId();
+    	
+    	if(idImageSelectionée == Pioche.getId()) 
+    		return "Pioche";
+    	
+    	return null;
+    }
+    
+    
+    // retourne l'imageView cliqué
+    public ImageView retournerNomImgViewCliquée(MouseEvent evt){
+    	
+    	ImageView i1 = (ImageView)evt.getSource();
+    	String idImageSelectionée = i1.getId();
+    	
+    	if(idImageSelectionée == Pioche.getId()) 
+    		return Pioche;
+    	
+    	return null;
+    }
+
+    // methode qui change l'image du joueur selon l'outil cliqué dans l'inventaire
+    public void prendreObjet(MouseEvent event) {
+    	
+    	Image img = new Image("/img/perso/perso" + retournerNomOutilCliqué(event) + ".png");
+    	Image imgB = new Image("/img/perso/filledroitidle.png");
+    	    	
+    	if(!tenirOuReposer) { 		
+    		perso.setImage(img);
+    		tenirOuReposer = true;
+    		
+    		DropShadow dropShadow = new DropShadow();
+    		dropShadow.setOffsetX(3.0);
+    		dropShadow.setOffsetY(3.0);
+    		
+    		imgView = retournerNomImgViewCliquée(event);
+    		retournerNomImgViewCliquée(event).setEffect(dropShadow);
+    	}
+
+    	else if(tenirOuReposer) {
+    		perso.setImage(imgB);
+    		tenirOuReposer = false;	
+    		imgView.setEffect(null);
+    	}
+    }
+    
+    public void enleverObjet(MouseEvent event, ImageView img) {
+    	img.setImage(null);
+    }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		Inventaire ivt = new Inventaire();
+		Pioche pioche1 = new Pioche(1, "pioche1");
+		
+		ivt.ajouterObjet(pioche1);
         
+
+		
 	}
 }
