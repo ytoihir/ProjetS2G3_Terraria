@@ -24,9 +24,6 @@ public class Controlleur {
 	@FXML
 	private ImageView imageEtabli;
 	
-	@FXML
-	private VBox affichage;
-	
 	private boolean clic;
 	
 	private Pane newLoadedPane;

@@ -13,7 +13,6 @@
             <Image url="@../../ressourcesImages/établi.png" />
          </image>
       </ImageView>
-      <VBox fx:id="affichage" layoutX="167.0" layoutY="182.0" prefHeight="200.0" prefWidth="125.0" />
       <Pane fx:id="pane" layoutX="167.0" layoutY="203.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

@@ -53,6 +53,7 @@ public class ControlleurEtabli {
 		e.choisirUnObjet(id);
 		if (e.fabriquerObjet(listeRessources)!=null) {
 			VBoxObjets.getChildren().add(new Text("Vous avez fabriquer l'objet " + e.fabriquerObjet(listeRessources).getNom()));
+			ap.getChildren().remove(alerte);
 		}
 		else {
 			alerte = new DialogPane();
