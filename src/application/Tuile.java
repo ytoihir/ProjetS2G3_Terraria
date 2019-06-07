@@ -23,8 +23,24 @@ public class Tuile {
 		return this.posY;
 	}
 	
+	 public void setPosX(int newPosX) {
+	    this.posX = newPosX;
+	 }
+	    
+	 public void setPosY(int newPosY) {
+	    this.posY = newPosY;
+	 }
+	
 	public String getId() {
 		return this.id;
+	}
+	
+	public void setTuileVide() {
+		this.id = "-1";
+	}
+	
+	public void setTuile(String newId) {
+		this.id = newId;
 	}
 	
 	public boolean getCollision() {

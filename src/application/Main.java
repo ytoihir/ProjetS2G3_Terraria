@@ -10,10 +10,21 @@ import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
+	private static Stage primaryStage;
+	
+	private void setPrimaryStage(Stage stage) {
+        Main.primaryStage = stage;
+    }
+	
+	static public Stage getPrimaryStage() {
+        return Main.primaryStage;
+    }
+	
 	@Override
 	public void start(Stage primaryStage) {
 		
 		try {
+			setPrimaryStage(primaryStage);
 			Pane root = (Pane)FXMLLoader.load(getClass().getResource("Sample.fxml"));
 		
 			Scene scene = new Scene(root,640,640);

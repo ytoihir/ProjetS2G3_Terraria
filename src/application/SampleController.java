@@ -5,10 +5,14 @@ import java.io.*;
 import application.Constantes;
 import java.net.URL;
 import java.util.*;
-
+import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -17,8 +21,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 
-public class SampleController implements Initializable {
+public class SampleController implements Initializable{
 
 	@FXML
 	private Pane pane;
@@ -38,6 +45,14 @@ public class SampleController implements Initializable {
 	
 	private CSVReader csvSol;
 	
+	private Timeline gameLoop;
+	
+	private int temps;
+	
+	private AnimationTimer timer;
+	
+	private boolean haut, bas, droite, gauche;
+	
 	//    @FXML
 	//    void gaucheOuDroite(KeyEvent event) {
 	//    	KeyCode touche = event.getCode();
@@ -55,8 +70,6 @@ public class SampleController implements Initializable {
 		csvDecor = new CSVReader();
 		csvDecor.tuileListe(Constantes.fichierCSV1);
 		ObservableList<Tuile> mapCiel = csvDecor.getListeTuile();
-		
-		System.out.println("ciel"+mapCiel.size());
 		for (int i = 0; i < mapCiel.size() ; i++) {
 			if (mapCiel.get(i).getId().equals("2")) {
 				ImageView blocCiel2 = new ImageView();
@@ -175,7 +188,6 @@ public class SampleController implements Initializable {
 			csvSol = new CSVReader();
 			csvSol.tuileListe(Constantes.fichierCSV2);
 			ObservableList<Tuile> mapSol = csvSol.getListeTuile();
-			System.out.println(mapSol.size());
 			for (int j = 0; j < mapSol.size() ; j++) {
 				if (mapSol.get(j).getId().equals("0")) {
 					mapSol.get(j).setCollision(true);
@@ -207,8 +219,8 @@ public class SampleController implements Initializable {
 	public void creationPerso() {
 		p = new Personnage(01,"Carolina", "Carolina", 40);
 		perso = new ImageView("file:src/ImgPersonnage/filleidle.png");
-		perso.translateXProperty().bind(p.xProperty());
-		perso.translateYProperty().bind(p.yProperty());
+		perso.translateXProperty().bind(p.xProperty().multiply(32));
+		perso.translateYProperty().bind(p.yProperty().multiply(32));
 		perso.setFocusTraversable(true);
 		perso.setFitHeight(32);
 		perso.setFitWidth(32);
@@ -258,36 +270,51 @@ public class SampleController implements Initializable {
 		switch (key) {
 		case UP:
 			perso.setImage(Constantes.personnageVuDeDos);
+			deplacement(0, -1);
 			break;
 		case DOWN:
 			perso.setImage(Constantes.personnageIdle);
+			deplacement(0, 1);
 			break;
 		case RIGHT:
+			/* animation */
 			perso.setImage(Constantes.personnageRegardantADroite);
 			perso.setImage(Constantes.personnageCourantADroite);
-			if (this.p.xProperty().get() == 612) {
+			/* si pas de collision*/
+			if (this.p.xProperty().get() == 19 ) {
 				System.out.println("On ne peut pas aller plus à droite !");
 			}
 			else {
-				initCollision(4, 0);
+				deplacement(1, 0);
+//				p.deplacerPerso(4, 0);
 			}
 			break;
 		case LEFT:
 			perso.setImage(Constantes.personnageRegardantAGauche);
 			perso.setImage(Constantes.personnageCourantAGauche);
+			gauche = true;
+			bas = false;
+			droite = false;
+			haut = false;
 			if (this.p.xProperty().get() == 0) {
 				System.out.println("On ne peut pas aller plus à gauche !");
 			}
 			else {
-				initCollision(-4, 0);
+				deplacement(-1, 0);// a revoir x, y
+//				p.deplacerPerso(-4, 0);
 			}
 			break;		
 		}
 	}
 	
-	private void initCollision(int x, int y) {
-		if (p.collision(x, y)) {
-			p.deplacerPerso(0, 0);
+	private void sauter() {
+		
+	}
+	
+	private void deplacement(int x, int y) {
+		if (csvSol.collision(x+this.p.xProperty().get(), y+this.p.yProperty().get())) {
+			System.out.println("collision je ne peux pas y aller!");
+			//p.deplacerPerso(x, y);
 		}
 		else {
 			p.deplacerPerso(x, y);
@@ -295,31 +322,118 @@ public class SampleController implements Initializable {
 	}
 	
 	private void initGravite(int x) {
-		if (!p.collision(x, 32)) {
-			p.deplacerPerso(x, 32);
+		if (!csvSol.collision(this.p.xProperty().get()+x, this.p.yProperty().get()+1)) {
+			p.deplacerPerso(x, 1);
 		}
 	}
-
-	//	public void casserBloc() {
-	//		affichageMapSol.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-	//		     @Override
-	//		     public void handle(MouseEvent event) {
-	//		    	 int x=((int)(event.getX())/32);
-	//		         int y=((int)(event.getY())/32);
-	//		         if (x<p.xProperty().get()/32-5 || x>p.xProperty().get()/32+5 || y<p.yProperty().get()/32-5 || y>p.yProperty().get()/32+6) {
-	//		         }
-	//		         else
-	//		        	 map.setBlock(y*60+x,new ("-1",y*60+x));
-	//		     }
-	//		});
-	//		
-	//	}
+	
+	private void initAnimation() {
+		gameLoop = new Timeline();
+		temps=0;
+		gameLoop.setCycleCount(Timeline.INDEFINITE);
+		int x = 0, y = 0;
+		KeyFrame kf = new KeyFrame(
+				Duration.seconds(0.1),
+				(ev ->{
+					initGravite(x);
+				}));
+		gameLoop.getKeyFrames().add(kf);
+		
+//		timer= new AnimationTimer() {
+//
+//			@Override
+//			public void handle(long now) {
+//					int x = 0, y = 0;
+//					initGravite(x);
+//			}
+//		};
+	}
+	
+	public void interactionBloc() {
+		Main.getPrimaryStage().addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				int x = (int) e.getX()/32;
+				int y = (int) e.getY()/32;
+				switch (e.getButton()) {
+				case PRIMARY:
+					System.out.println("j'ai cliqué sur une tuile à x = " + x +" et y = "+ y);
+					for (int i = 0; i < csvSol.getListeTuile().size(); i++) {
+						if (csvSol.getListeTuile().get(i).getPosX() == x && csvSol.getListeTuile().get(i).getPosY() == y && !csvSol.getListeTuile().get(i).getId().equals("-1")) {
+							csvSol.setTuileVide(x, y);
+							csvSol.getListeTuile().get(i).setCollision(false);
+							ImageView newTuil = new ImageView(Constantes.tuileTransparente);
+							newTuil.setX(x*32);
+							newTuil.setY(y*32);
+							affichageMapSol.getChildren().set(i,newTuil);
+						//	affichageMapSol.getChildren().set(i,new ImageView(Constantes.tuileTransparente));
+							break;
+						}
+					}
+					break;
+				case SECONDARY:
+					System.out.println("j'ai cliqué sur une tuile à x = " + x +" et y = "+ y);
+					for (int i = 0; i < csvSol.getListeTuile().size(); i++) {
+						if (csvSol.getListeTuile().get(i).getPosX() == x && csvSol.getListeTuile().get(i).getPosY() == y && csvSol.getListeTuile().get(i).getId().equals("-1")) {
+							csvSol.setNouvelleTuile("1", x, y);
+							csvSol.getListeTuile().get(i).setCollision(true);
+							ImageView newTuil = new ImageView(Constantes.sol1);
+							newTuil.setX(x*32);
+							newTuil.setY(y*32);
+							affichageMapSol.getChildren().set(i,newTuil);
+//							affichageMapSol.getChildren().add(i,new ImageView(Constantes.sol1));
+							break;
+						}
+					}
+					break;
+				}
+			}
+		});
+	}
+	
+	public void casserBloc() {
+//		System.out.println("j'entre dans la fonction casserbloc()");
+		Main.getPrimaryStage().addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			@Override
+		     public void handle(MouseEvent e) {
+				int x = (int) e.getX()/32;
+				int y = (int) e.getY()/32;
+//				System.out.println("j'ai cliqué sur une tuile à x = " + x +" et y = "+ y);
+				for (int i = 0; i < csvSol.getListeTuile().size(); i++) {
+					if (csvSol.getListeTuile().get(i).getPosX() == x && csvSol.getListeTuile().get(i).getPosY() == y && csvSol.getListeTuile().get(i).getId() != "-1") {
+						csvSol.setTuileVide(x, y);
+						csvSol.getListeTuile().get(i).setCollision(false);
+//						ImageView blocTransparent = new ImageView();
+//						blocTransparent.setImage(Constantes.tuileTransparente);
+//						blocTransparent.setX(csvSol.getListeTuile().get(i).getPosX()*32);
+//						blocTransparent.setY(csvSol.getListeTuile().get(i).getPosY()*32);
+						affichageMapSol.getChildren().set(i,new ImageView(Constantes.tuileTransparente));
+					}
+				}
+			};
+		});
+	}
+	
+//	public void poserBloc() {
+//		Main.getPrimaryStage().addEventHandler(MouseEvent.BUTTON, new EventHandler<MouseEvent>() {
+//			@Override
+//		     public void handle(MouseEvent e) {
+//				int x = (int) e.getX()/32;
+//				int y = (int) e.getY()/32;
+//				for (int i = 0; i < csvSol.getListeTuile().size(); i++) {
+//					if (csvSol.getListeTuile().get(i).getPosX() == x && csvSol.getListeTuile().get(i).getPosY() == y && csvSol.getListeTuile().get(i).getId() != "-1") {
+//				}
+//			}
+//		}
+//	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		creationMap();
-		creationPerso();	
-		//System.out.println(CSVReader.tuileListe(Constantes.fichierCSV2));
+		this.creationMap();
+		this.creationPerso();	
+		this.initAnimation();
+		this.gameLoop.play();
+		this.interactionBloc();
 
 	}
 }

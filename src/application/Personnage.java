@@ -33,8 +33,8 @@ public class Personnage {
 		this.nom = nom;
 		this.desc = description;
 		this.CoupsTotalAvantDeMourir = PV;
-		this.xProperty = new SimpleIntegerProperty(32);
-		this.yProperty = new SimpleIntegerProperty(16*32);
+		this.xProperty = new SimpleIntegerProperty(9);
+		this.yProperty = new SimpleIntegerProperty(0);
 
 	}
 	
@@ -47,6 +47,11 @@ public class Personnage {
 	}
 	
 	public void deplacerPerso(int x, int y) {
+//		System.out.println("posPerso X :" + this.getX());
+//		System.out.println("posPerso y :" + this.getY());
+//		if (this.xProperty.get()%32 == 0) {
+//			this.xProperty.set(this.xProperty.get() + x);
+//		}
 		this.xProperty.set(this.xProperty.get() + x);
 		this.yProperty.set(this.yProperty.get() + y);
 	}
@@ -59,25 +64,6 @@ public class Personnage {
 		return this.yProperty.get();
 	}
 	
-	public boolean collision(int x, int y) {
-		CSVReader csv = new CSVReader();
-		csv.tuileListe(Constantes.fichierCSV1);
-		if(csv.getTuile(csv.calculerIndice(this.getX()+x, this.getY()+y)).getCollision()){
-			return true;
-		}
-		else if(csv.getTuile(csv.calculerIndice(this.getX()+x, (this.getY()+y)+32)).getCollision()){
-			return true;
-		}
-		else if(csv.getTuile(csv.calculerIndice((this.getX()+x)+32, this.getY()+y)).getCollision()){
-			return true;
-		}
-		else if(csv.getTuile(csv.calculerIndice((this.getX()+x)+32, (this.getY()+y)+32)).getCollision()){
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 	
 	
 }

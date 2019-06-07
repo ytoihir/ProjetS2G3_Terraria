@@ -24,14 +24,11 @@ public class CSVReader {
                 String[] map = ligne.split(",|;");
 
                 for (int i = 0; i < map.length; i++) {
-                	System.out.print(map[i]);
                 	Tuile nouvelleTuile = new Tuile(i,j,map[i]);
                 	this.listeTuile.add(nouvelleTuile);
                 	
                 	
                 }
-                System.out.println();
-                System.out.println("toute la ligne"+ligne);
                 j++;
 
             }
@@ -72,14 +69,38 @@ public class CSVReader {
 //    	return (int)(y%32);
 //    }
 //    
-//    public int calculerIndice(int x, int y) {
-//    	for (int i = 0; i < this.listeTuile.size(); i++) {
-//    		if(this.listeTuile.get(i).getPosX() == x && this.listeTuile.get(i).getPosY() == y) {
-//    			return i;
-//    		}
-//    	}
-//		return 400;
-//    }
+    public int calculerIndice(int x, int y) {
+        int indice = 0;
+      
+        for (int i = 0; i < this.listeTuile.size(); i++) {
+            if (this.listeTuile.get(i).getPosX() == x && this.listeTuile.get(i).getPosY() == y) {
+                indice = i;
+            }
+        }
+        return indice;
+    }
+    
+    public boolean collision(int x, int y) {    	
+      if (this.getTuile(this.calculerIndice(x, y)).getId().equals("0") || this.getTuile(this.calculerIndice(x, y)).getId().equals("1") )
+       return true;
+       else return false;
+    }
+    
+    public void setNouvelleTuile(String id, int x, int y) {
+    	for (int i = 0; i < this.listeTuile.size(); i++) {
+    		if (this.listeTuile.get(i).getPosX() == x && this.listeTuile.get(i).getPosY() == y) {
+    			this.listeTuile.get(i).setTuile(id);
+    		}
+    	}
+    }
+    
+    public void setTuileVide(int x, int y) {
+		for (int i = 0; i < this.listeTuile.size(); i++) {
+			if (this.listeTuile.get(i).getPosX() == x && this.listeTuile.get(i).getPosY() == y) {
+				this.listeTuile.get(i).setTuileVide();
+			}
+		}
+	}
     
 
 }
