@@ -58,7 +58,7 @@ public class ControleurInventaire implements Initializable, ListChangeListener<O
 	@FXML
 	private Pane pane;
 
-	private ControlleurEtabli c;
+	private ControlleurEtabli cE;
 	
 	@FXML
 	public void afficheListeObjets() {
@@ -205,9 +205,7 @@ public class ControleurInventaire implements Initializable, ListChangeListener<O
 			case1.setImage(new Image(pioche.getValPNG()));
 			case1.setId(pioche.getId());
 			
-			c = new ControlleurEtabli(this);
-			this.ivt.ajouterObjet(new Fer());
-			this.ivt.ajouterObjet(new Fer());
+			cE = new ControlleurEtabli(this);
 			
 			pane.setVisible(false);
 
@@ -227,7 +225,7 @@ public class ControleurInventaire implements Initializable, ListChangeListener<O
     				casesInventaire.get(i).setOnMouseClicked((event) -> { afficheListeObjets() ;});
 				
     			}
-    			
+    		
     			break;
     			
     		}
@@ -235,45 +233,6 @@ public class ControleurInventaire implements Initializable, ListChangeListener<O
 		}
     }
     
-    public void supprimerImageObjet() {
-    	int nbrImageSupp=0, i = 0;
-    	String id=casesInventaire.get(i).getId();
-
-    	while(nbrImageSupp!=ivt.getListeObjets().get(i).getFerNecessaires()) {
-    		for (int j=0; j<ivt.getListeObjets().size(); j++) {
-    			if (ivtPane.getChildren().get(i).getId() == ivt.getListeObjets().get(j).getId() && ivt.getObjet(id).getNom().equals("fer")) {
-    				casesInventaire.get(i).setImage(null);
-        			nbrImageSupp++;
-        			
-        		}
-        		i++;
-    		}
-    		
-    	}
-    	
-    	System.out.println(nbrImageSupp);
-    	
-    	
-		/*
-		 * for (int i=0; i<casesInventaire.size(); i++) {
-		 * 
-		 * while(nbrImageSupp!=ivt.getFerNecessaires()) {
-		 * 
-		 * String id=casesInventaire.get(i).getId();
-		 * 
-		 * System.out.println(nbrImageSupp);
-		 * 
-		 * for (int j=0; j<ivt.getListeObjets().size(); j++) {
-		 * 
-		 * if (ivt.getObjet(id).getNom().equals("fer")) {
-		 * 
-		 * System.out.println(ivt.getObjet(id).getNom());
-		 * casesInventaire.get(i).setImage(null); nbrImageSupp++;
-		 * 
-		 * } } } }
-		 */
-    }
-
     @Override
 	public void onChanged(ListChangeListener.Change<? extends Objet> c) {
 		
@@ -285,7 +244,6 @@ public class ControleurInventaire implements Initializable, ListChangeListener<O
 				
 			else if (c.wasRemoved()){
 				System.out.println("suppression...");
-				supprimerImageObjet();
 			}
 			
 		}

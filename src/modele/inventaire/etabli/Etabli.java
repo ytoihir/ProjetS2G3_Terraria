@@ -31,16 +31,18 @@ public class Etabli extends Objet{
 		
 		ArrayList<String> listObjAsupp = new ArrayList<>();
 		
-		int suppFer=0;
+		int suppFer=0, nbrNec=0;
 		
 		for(int i = 0; i < ivt.getListeObjets().size(); i++) {
 			if(ivt.getListeObjets().get(i).getNom().equals("fer")) {
-				listObjAsupp.add("fer");
+				if (nbrNec!=objetSelec.getFerNecessaires()) {
+					listObjAsupp.add(ivt.getListeObjets().get(i).getId());
+					nbrNec++;
+				}
 			}
 		}
 		
 		if (objetSelec.getFerNecessaires() <= listObjAsupp.size()) {
-			ivt.ajouterObjet(new Objet(objetSelec.getNom(), objetSelec.getValPNG()));
 
 			for(int y = 0; y < ivt.getListeObjets().size(); y++) {
 
@@ -54,6 +56,8 @@ public class Etabli extends Objet{
 				}
 				
 			}
+			
+			ivt.ajouterObjet(new Objet(objetSelec.getNom(), objetSelec.getValPNG()));
 			
 			return listObjAsupp;
 			

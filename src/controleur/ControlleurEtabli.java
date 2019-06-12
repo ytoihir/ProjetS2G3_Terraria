@@ -15,9 +15,12 @@ public class ControlleurEtabli {
 	
 	private DialogPane alerte;
 
+	private ArrayList<String> ressourcesAsupp;
+	
 	private ControleurInventaire contInventaire;
 	
 	public ControlleurEtabli(ControleurInventaire ivt) {
+		this.ressourcesAsupp=new ArrayList<String>();
 		this.contInventaire = ivt;
 		Image etabli = new Image("/img/inventaire/etablieEcran.png");
 		ivt.getPane().getChildren().add(new ImageView(etabli));
@@ -25,13 +28,11 @@ public class ControlleurEtabli {
 	}
 	
 	public void fabriquerObjetVue(String id, Inventaire i) {
-	
-		int nbrAsupp=0;
-		
+
 		this.contInventaire.getIvt().getEtabli().choisirUnObjet(id); 
 		
 		ArrayList<String> liste = contInventaire.getIvt().getEtabli().fabriquerObjet(i);
-		
+	
 		if(liste==null) {
 			alerte = new DialogPane();
 			contInventaire.getPane().getChildren().add(alerte);
@@ -40,27 +41,30 @@ public class ControlleurEtabli {
 		}
 		
 		else {
+			String idImageView=null;
 			for (int a=0; a<contInventaire.getListeImgView().size(); a++) {
-				String idObj = contInventaire.getListeImgView().get(a).getId();
+			
+				idImageView = contInventaire.getListeImgView().get(a).getId();
 				
-				for (int j=0; j<contInventaire.getListeInventaire().size(); j++) {
-					if(contInventaire.getListeInventaire().get(a).getId()==idObj) {
-						
+				for (int b=0; b<liste.size(); b++) {
+					if(idImageView==liste.get(b)) {
+						contInventaire.getListeImgView().get(a).setImage(null);
 					}
 				}
 				
-				if (liste.size()!=nbrAsupp) {
-					contInventaire.getListeImgView().get(a).setImage(null);
-					nbrAsupp++;
-				}
 			}
-		}
 		
-		System.out.println(contInventaire.getIvt().getListeObjets());
+		}
 		
 	}
 	
-
+	public ArrayList<String> getListeAsupp() {
+		
+		System.out.println("res"+this.ressourcesAsupp);
+		return this.ressourcesAsupp;
+		
+	}
+	
 	public void configurerEtabli(Etabli e) {
 			   
 		int xObjets = 10;
