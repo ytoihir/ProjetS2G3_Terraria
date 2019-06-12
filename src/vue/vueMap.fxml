@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane fx:id="ivtPane" prefHeight="366.0" prefWidth="462.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurInventaire">
+   <children>
+      <ImageView fx:id="perso" fitHeight="51.0" fitWidth="39.0" layoutX="307.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../map_0.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="48.0" fitWidth="150.0" layoutX="15.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../2696d65d76e5970d2d8f3d3fab1408d6.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="48.0" fitWidth="143.0" layoutX="157.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../2696d65d76e5970d2d8f3d3fab1408d6.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="pane" layoutX="74.0" layoutY="76.0" prefHeight="252.0" prefWidth="167.0" />
+      <ImageView fx:id="case4" fitHeight="40.0" fitWidth="39.0" layoutX="164.0" layoutY="16.0" onMouseClicked="#prendreObjet" onMouseDragged="#enleverObjet" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="case2" fitHeight="37.0" fitWidth="37.0" layoutX="68.0" layoutY="18.0" onMouseClicked="#prendreObjet" onMouseDragged="#enleverObjet" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="case1" fitHeight="40.0" fitWidth="42.0" layoutX="20.0" layoutY="16.0" onMouseClicked="#prendreObjet" onMouseDragged="#enleverObjet" opacity="0.7" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="case3" fitHeight="40.0" fitWidth="40.0" layoutX="115.0" layoutY="17.0" onMouseClicked="#prendreObjet" onMouseDragged="#enleverObjet" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="case5" fitHeight="37.0" fitWidth="40.0" layoutX="208.0" layoutY="19.0" onMouseClicked="#prendreObjet" onMouseDragged="#enleverObjet" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="case6" fitHeight="40.0" fitWidth="40.0" layoutX="256.0" layoutY="18.0" onMouseClicked="#prendreObjet" onMouseDragged="#enleverObjet" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
