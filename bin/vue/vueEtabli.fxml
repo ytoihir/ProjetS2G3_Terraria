@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="ap" prefHeight="222.0" prefWidth="151.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControlleurEtabli">
+   <children>
+      <ImageView fx:id="ecranEtabli" fitHeight="225.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox fx:id="VBoxObjets" layoutX="15.0" layoutY="31.0" prefHeight="177.0" prefWidth="39.0" />
+      <VBox fx:id="VBoxRessources" layoutX="56.0" layoutY="31.0" prefHeight="177.0" prefWidth="39.0" />
+      <VBox fx:id="VBoxNbrRessources" layoutX="82.0" layoutY="31.0" prefHeight="177.0" prefWidth="26.0" />
+      <VBox fx:id="VBoxBoutons" layoutX="108.0" layoutY="31.0" prefHeight="177.0" prefWidth="26.0" />
+   </children>
+</AnchorPane>

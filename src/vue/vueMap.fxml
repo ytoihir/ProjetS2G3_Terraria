@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="366.0" prefWidth="462.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.controleur">
+<AnchorPane prefHeight="366.0" prefWidth="462.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurInventaire">
    <children>
       <ImageView fx:id="perso" fitHeight="51.0" fitWidth="39.0" layoutX="307.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Downloads/DOCS%20DEFINITIFS/IMAGES%20DEF/SPRITE/filledroitidle.png" />
+            <Image url="@../../../../Downloads/DOCS%20DEFINITIFS/IMAGES%20DEF/SPRITE/persoDroite/filledroitidle.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="48.0" fitWidth="150.0" layoutX="15.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
@@ -23,18 +22,17 @@
             <Image url="@../../../../Downloads/2696d65d76e5970d2d8f3d3fab1408d6.png" />
          </image>
       </ImageView>
-      <HBox layoutX="19.0" layoutY="6.0" prefHeight="71.0" prefWidth="135.0">
-         <children>
-            <ImageView fx:id="Pioche" fitHeight="40.0" fitWidth="42.0" onMouseClicked="#prendrePioche" onMouseDragged="#enleverPioche" opacity="0.7" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../Downloads/DOCS%20DEFINITIFS/IMAGES%20DEF/Objets/pioche.png" />
-               </image>
-               <HBox.margin>
-                  <Insets top="9.0" />
-               </HBox.margin>
-            </ImageView>
-         </children>
-      </HBox>
-      <HBox layoutX="159.0" layoutY="14.0" prefHeight="21.0" prefWidth="113.0" />
+      <Pane fx:id="pane" layoutX="74.0" layoutY="76.0" prefHeight="252.0" prefWidth="167.0" />
+      <ImageView fx:id="imageEtabli" fitHeight="21.0" fitWidth="39.0" layoutX="27.0" layoutY="293.0" onMouseClicked="#afficheListeObjets" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Downloads/ProjetS2G3_Terraria-devYoa/ressourcesImages/établi.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="case4" fitHeight="40.0" fitWidth="39.0" layoutX="164.0" layoutY="16.0" onMouseClicked="#prendreObjet" onMouseDragged="#enleverObjet" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="case2" fitHeight="37.0" fitWidth="37.0" layoutX="68.0" layoutY="18.0" onMouseClicked="#prendreObjet" onMouseDragged="#enleverObjet" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="case1" fitHeight="40.0" fitWidth="42.0" layoutX="20.0" layoutY="16.0" onMouseClicked="#prendreObjet" onMouseDragged="#enleverObjet" opacity="0.7" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="case3" fitHeight="40.0" fitWidth="40.0" layoutX="115.0" layoutY="17.0" onMouseClicked="#prendreObjet" onMouseDragged="#enleverObjet" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="case5" fitHeight="37.0" fitWidth="40.0" layoutX="208.0" layoutY="19.0" onMouseClicked="#prendreObjet" onMouseDragged="#enleverObjet" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="case6" fitHeight="40.0" fitWidth="40.0" layoutX="256.0" layoutY="18.0" onMouseClicked="#prendreObjet" onMouseDragged="#enleverObjet" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
